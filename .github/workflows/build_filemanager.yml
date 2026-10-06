@@ -1,7 +1,12 @@
 name: 4. Build FileManager Manual
-run-name: Build FileManager Manual (${{ github.ref_name }})
+run-name: Build FileManager Manual (${{ github.ref_name }})${{ inputs.upload_to_testflight == false && ' - build only' || '' }}
 on:
   workflow_dispatch:
+    inputs:
+      upload_to_testflight:
+        description: "Upload the signed IPA to TestFlight (uncheck for a build-only test run)"
+        type: boolean
+        default: true
 
 env:
   GH_PAT: ${{ secrets.GH_PAT }}
@@ -181,6 +186,7 @@ jobs:
 
       # Upload to TestFlight
       - name: Fastlane upload to TestFlight
+        if: ${{ inputs.upload_to_testflight }}
         run: bundle exec fastlane release
         env:
           TEAMID: ${{ secrets.TEAMID }}
