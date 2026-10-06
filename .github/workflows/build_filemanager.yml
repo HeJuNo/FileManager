@@ -118,22 +118,15 @@ jobs:
   build:
     name: Build
     needs: [check_certs, check_status]
-    runs-on: macos-15 # FileManager targets iOS 18 / Xcode 16
+    runs-on: macos-26
     permissions:
       contents: write
     if:
       | # builds with manual start or push; if scheduled: once a month
       github.event_name == 'workflow_dispatch'
     steps:
-      - name: Select latest available Xcode 16
-        run: |
-          XCODE_PATH=$(ls -d /Applications/Xcode_16*.app 2>/dev/null | sort -V | tail -1)
-          if [ -z "$XCODE_PATH" ]; then
-            XCODE_PATH=$(ls -d /Applications/Xcode*.app | sort -V | tail -1)
-          fi
-          echo "Using $XCODE_PATH"
-          sudo xcode-select -switch "$XCODE_PATH/Contents/Developer"
-          xcodebuild -version
+      - name: Select Xcode version
+        run: "sudo xcode-select --switch /Applications/Xcode_26.5.app/Contents/Developer"
 
       - name: Checkout Repo for building
         uses: actions/checkout@v5

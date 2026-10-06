@@ -26,6 +26,7 @@ targets:
         UILaunchScreen: {}
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
           - UIInterfaceOrientationLandscapeLeft
           - UIInterfaceOrientationLandscapeRight
         NSCameraUsageDescription: "FileManager needs camera access to scan documents."
@@ -67,7 +68,8 @@ targets:
           NSExtensionPointIdentifier: com.apple.share-services
           NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ShareViewController
           NSExtensionAttributes:
-            NSExtensionActivationRule: TRUEPREDICATE
+            NSExtensionActivationRule:
+              NSExtensionActivationSupportsFileWithMaxCount: 0
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.xsxs18.FileManager.ShareExtension
