@@ -1,9 +1,10 @@
 name: Build IPA
 
-on:
-  workflow_dispatch:
-  push:
-    branches: [main]
+# Disabled: superseded by the fastlane/TestFlight pipeline (build_filemanager*.yml).
+# on:
+#   workflow_dispatch:
+#   push:
+#     branches: [main]
 
 permissions:
   contents: write

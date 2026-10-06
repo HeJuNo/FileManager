@@ -1,0 +1,8 @@
+# FileManager — the bundle identifier is derived from the TEAMID secret at build time.
+filemanager_teamid = ENV["TEAMID"]
+
+app_identifier("com.#{filemanager_teamid}.FileManager")
+team_id(filemanager_teamid) if filemanager_teamid && !filemanager_teamid.empty?
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile
