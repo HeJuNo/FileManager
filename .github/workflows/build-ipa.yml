@@ -1,8 +1,9 @@
 name: Build IPA
 
-# Disabled: superseded by the fastlane/TestFlight pipeline (build_filemanager*.yml).
-# on:
-#   workflow_dispatch:
+# Manual-only: superseded by the fastlane/TestFlight pipeline (build_filemanager*.yml).
+# The automatic push trigger is disabled; to re-enable it, uncomment the two lines below.
+on:
+  workflow_dispatch:
 #   push:
 #     branches: [main]
 
